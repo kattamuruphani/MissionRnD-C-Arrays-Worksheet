@@ -12,8 +12,70 @@ NOTES: Don't create new array, try to change the input array.
 */
 
 #include <stdio.h>
+#include<atlalloc.h>
+void remove(int*,int);
+
+void sort(int*, int, int);
 
 void * removeArrayDuplicates(int *Arr, int len)
 {
-	return NULL;
+	sort(Arr, 0, len-1);
+	remove(Arr, len);
+	return Arr;
+}
+
+
+
+
+void sort(int *x, int first, int last){
+	int pivot, j, temp, i;
+
+	if (first<last){
+		pivot = first;
+		i = first;
+		j = last;
+
+		while (i<j){
+			while (x[i] <= x[pivot] && i<last)
+				i++;
+			while (x[j]>x[pivot])
+				j--;
+			if (i<j){
+				temp = x[i];
+				x[i] = x[j];
+				x[j] = temp;
+			}
+		}
+
+		temp = x[pivot];
+		x[pivot] = x[j];
+		x[j] = temp;
+		sort(x, first, j - 1);
+		sort(x, j + 1, last);
+
+	}
+}
+
+
+void remove(int *a, int len){
+	int i,x,j=0;
+	int *binary;
+	binary = (int*)malloc(sizeof(int)*(len + 1));
+	for (i = 0; i < len; i++){
+		x = a[i];
+		binary[i] = 1;
+		while (x == a[i+1]){
+			i++;
+			binary[i] = 0;
+		}
+	}
+	for (i = 0, j = 0; i < len+1; i++){
+		if (binary[i] == 1){
+			a[j] = a[i];
+			j++;
+		}
+	}
+	for (; j <= len; j++){
+		a[j] = 0;
+	}
 }
