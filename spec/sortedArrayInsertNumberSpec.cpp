@@ -23,7 +23,7 @@ namespace spec
 
 		TEST_METHOD(inValidInputCheck)
 		{
-			int lessCount, moreCount;
+			
 			Assert::IsNull(sortedArrayInsertNumber(NULL, 1, 1), L"Array NULL check failed.", LINE_INFO());
 			int Arr1[1] = { 1 };
 			Assert::IsNull(sortedArrayInsertNumber(Arr1, -2, 1), L"Length less than zero check failed.", LINE_INFO());

@@ -19,7 +19,45 @@ struct student {
 	char name[10];
 	int score;
 };
+void sort(struct student*, int, int);
 
 void * scoresDescendingSort(struct student *students, int len) {
-	return NULL;
+	if (len <= 0 || students == NULL)
+		return NULL;
+
+	sort(students, 0, len - 1);
+	return students;
 }
+
+
+void sort(struct student * x,int first, int last){
+	int pivot, j, temp, i;
+	
+	
+
+	if (first<last){
+		pivot = first;
+		i = first;
+		j = last;
+
+		while (i<j){
+			while (x[i].score >= x[pivot].score && i<last)
+				i++;
+			while (x[j].score<x[pivot].score)
+				j--;
+			if (i<j){
+				temp = x[i].score;
+				x[i].score = x[j].score;
+				x[j].score = temp;
+			}
+		}
+
+		temp = x[pivot].score;
+		x[pivot].score = x[j].score;
+		x[j].score = temp;
+		sort(x, first, j - 1);
+		sort(x, j + 1, last);
+
+	}
+}
+
