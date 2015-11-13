@@ -12,7 +12,7 @@ namespace spec
 
 		TEST_METHOD(inValidInputCheck)
 		{
-			int lessCount, moreCount;
+			
 			Assert::IsNull(removeArrayDuplicates(NULL, 1), L"Array NULL check failed.", LINE_INFO());
 			int Arr1[1] = { 1 };
 			Assert::IsNull(removeArrayDuplicates(Arr1, -2), L"Length less than zero check failed.", LINE_INFO());
